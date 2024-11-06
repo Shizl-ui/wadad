@@ -75,26 +75,11 @@ local function loadShizlsGUI()
         versionLabel.Size = UDim2.new(0.1, 0, 0.05, 0)
         versionLabel.Position = UDim2.new(0.01, 0, 0.01, 0)
         versionLabel.BackgroundTransparency = 1
-        versionLabel.Text = "V1.6"  -- Updated version number
+        versionLabel.Text = "V1.6"  -- Updated version to v1.6
         versionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
         versionLabel.Font = Enum.Font.SourceSansBold
         versionLabel.TextSize = 14
         versionLabel.Parent = shizlsFrame
-
-        -- Discord Link Label on the Right
-        local discordLink = Instance.new("TextLabel")
-        discordLink.Size = UDim2.new(0.2, 0, 0.05, 0)
-        discordLink.Position = UDim2.new(0.8, 0, 0.01, 0)  -- Positioned at the top right
-        discordLink.BackgroundTransparency = 1
-        discordLink.Text = "Discord: https://discord.gg/eDKzxt4w"
-        discordLink.TextColor3 = Color3.fromRGB(0, 255, 0)  -- Green color
-        discordLink.Font = Enum.Font.SourceSansBold
-        discordLink.TextSize = 14
-        discordLink.TextButton.MouseButton1Click:Connect(function()
-            setclipboard("https://discord.gg/eDKzxt4w")
-            showNotification("Link copied to clipboard!")
-        end)
-        discordLink.Parent = shizlsFrame
 
         -- Button Tab List with All Tabs (Ordered)
         local tabs = {
@@ -124,19 +109,21 @@ local function loadShizlsGUI()
             { Name = "Testbot", URL = "https://raw.githubusercontent.com/Shizl-ui/testbot/refs/heads/main/testbot" },
             { Name = "Todo", URL = "https://paste.ee/r/Kd9uX" },
             { Name = "Sonic.exe", URL = "https://raw.githubusercontent.com/Nova2ezz/sonic-exe-moveset-3/refs/heads/main/3" },
-            { Name = "Your Average Guy", URL = "https://raw.githubusercontent.com/Shizl-ui/wadawd/refs/heads/main/wadawd" }
+            { Name = "Your Average Guy", URL = "https://raw.githubusercontent.com/Shizl-ui/wadawd/refs/heads/main/wadawd" } -- New tab added
         }
 
-        -- Tab Buttons Generation
-        local col = 0
-        local row = 1
+        -- Positioning for Ordered Grid Layout
+        local buttonSize = UDim2.new(0.15, 0, 0.06, 0)
+        local spacing = 0.02
+        local row, col = 0, 0
+
         for _, tab in ipairs(tabs) do
             local tabButton = Instance.new("TextButton")
-            tabButton.Size = UDim2.new(0.3, 0, 0.05, 0)
-            tabButton.Position = UDim2.new(0.1 + col * 0.35, 0, 0.15 + row * 0.07, 0)
+            tabButton.Size = buttonSize
+            tabButton.Position = UDim2.new(0.02 + (col * (0.15 + spacing)), 0, 0.15 + (row * (0.06 + spacing)), 0)
             tabButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-            tabButton.Text = tab.Name
             tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            tabButton.Text = tab.Name
             tabButton.Font = Enum.Font.SourceSans
             tabButton.TextSize = 14
             tabButton.Parent = shizlsFrame
